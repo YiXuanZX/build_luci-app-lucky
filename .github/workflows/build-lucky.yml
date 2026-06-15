@@ -15,28 +15,28 @@ jobs:
       matrix:
         include:
           # ARCH=x86_64 → lucky Linux_x86_64
-          - arch: x86_64
-            sdk_url: https://downloads.immortalwrt.org/releases/25.12.0-rc1/targets/x86/64/immortalwrt-sdk-25.12.0-rc1-x86-64_gcc-14.3.0_musl.Linux-x86_64.tar.zst
+          # - arch: x86_64
+          #   sdk_url: https://downloads.immortalwrt.org/releases/25.12.0/targets/x86/64/immortalwrt-sdk-25.12.0-x86-64_gcc-14.3.0_musl.Linux-x86_64.tar.zst
 
           # ARCH=i386 → lucky Linux_i386
-          - arch: x86_generic
-            sdk_url: https://downloads.immortalwrt.org/releases/25.12.0-rc1/targets/x86/generic/immortalwrt-sdk-25.12.0-rc1-x86-generic_gcc-14.3.0_musl.Linux-x86_64.tar.zst
+          # - arch: x86_generic
+          #   sdk_url: https://downloads.immortalwrt.org/releases/25.12.0/targets/x86/generic/immortalwrt-sdk-25.12.0-x86-generic_gcc-14.3.0_musl.Linux-x86_64.tar.zst
 
           # ARCH=aarch64 → lucky Linux_arm64
           - arch: mediatek_filogic
-            sdk_url: https://downloads.immortalwrt.org/releases/25.12.0-rc1/targets/mediatek/filogic/immortalwrt-sdk-25.12.0-rc1-mediatek-filogic_gcc-14.3.0_musl.Linux-x86_64.tar.zst
+            sdk_url: https://downloads.immortalwrt.org/releases/25.12.0/targets/mediatek/filogic/immortalwrt-sdk-25.12.0-mediatek-filogic_gcc-14.3.0_musl.Linux-x86_64.tar.zst
 
           # ARCH=arm → lucky Linux_armv7
-          - arch: ipq40xx_generic
-            sdk_url: https://downloads.immortalwrt.org/releases/25.12.0-rc1/targets/ipq40xx/generic/immortalwrt-sdk-25.12.0-rc1-ipq40xx-generic_gcc-14.3.0_musl_eabi.Linux-x86_64.tar.zst
+          # - arch: ipq40xx_generic
+          #   sdk_url: https://downloads.immortalwrt.org/releases/25.12.0/targets/ipq40xx/generic/immortalwrt-sdk-25.12.0-ipq40xx-generic_gcc-14.3.0_musl_eabi.Linux-x86_64.tar.zst
 
           # ARCH=mipsel → lucky Linux_mipsle_softfloat
-          - arch: ramips_mt7621
-            sdk_url: https://downloads.immortalwrt.org/releases/25.12.0-rc1/targets/ramips/mt7621/immortalwrt-sdk-25.12.0-rc1-ramips-mt7621_gcc-14.3.0_musl.Linux-x86_64.tar.zst
+          # - arch: ramips_mt7621
+          #   sdk_url: https://downloads.immortalwrt.org/releases/25.12.0/targets/ramips/mt7621/immortalwrt-sdk-25.12.0-ramips-mt7621_gcc-14.3.0_musl.Linux-x86_64.tar.zst
 
           # ARCH=mips → lucky Linux_mips_softfloat
-          - arch: ath79_generic
-            sdk_url: https://downloads.immortalwrt.org/releases/25.12.0-rc1/targets/ath79/generic/immortalwrt-sdk-25.12.0-rc1-ath79-generic_gcc-14.3.0_musl.Linux-x86_64.tar.zst
+          # - arch: ath79_generic
+          #   sdk_url: https://downloads.immortalwrt.org/releases/25.12.0/targets/ath79/generic/immortalwrt-sdk-25.12.0-ath79-generic_gcc-14.3.0_musl.Linux-x86_64.tar.zst
 
     steps:
       - name: Install build dependencies
@@ -99,7 +99,7 @@ jobs:
           ls -lh ../artifacts/
 
       - name: Upload APKs as job artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: lucky-apk-${{ matrix.arch }}
           path: artifacts/*.apk
@@ -131,7 +131,7 @@ jobs:
           tag_name: ${{ github.ref_name || 'latest' }}
           name: "luci-app-lucky ImmortalWrt 25.12 ${{ github.ref_name || '' }}"
           body: |
-            ## luci-app-lucky for ImmortalWrt 25.12.0-rc1
+            ## luci-app-lucky for ImmortalWrt 25.12.0
 
             | SDK Target | ARCH | lucky 二进制 | 适用设备 |
             |---|---|---|---|
