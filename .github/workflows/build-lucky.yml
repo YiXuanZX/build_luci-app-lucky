@@ -99,7 +99,7 @@ jobs:
           ls -lh ../artifacts/
 
       - name: Upload APKs as job artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@main
         with:
           name: lucky-apk-${{ matrix.arch }}
           path: artifacts/*.apk
@@ -114,7 +114,7 @@ jobs:
 
     steps:
       - name: Download all APK artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@main
         with:
           path: all-apks
           pattern: lucky-apk-*
@@ -126,7 +126,7 @@ jobs:
           find all-apks/ -name "*.apk" | sort
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@main
         with:
           tag_name: ${{ github.ref_name || 'latest' }}
           name: "luci-app-lucky ImmortalWrt 25.12 ${{ github.ref_name || '' }}"
